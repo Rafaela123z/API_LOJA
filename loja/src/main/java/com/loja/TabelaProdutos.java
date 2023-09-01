@@ -61,4 +61,9 @@ public class TabelaProdutos {
             produtoProcurado.setValorUnitario(produtoAtualizar.getValorUnitario());
         }
     }
+
+    public void removerProduto(int produoId){
+       Produto produtoRemover = this.buscarProdutoPeloId(produoId);
+        this.produtos.remove(produtoRemover);
+    }
 }
