@@ -1,5 +1,8 @@
 package com.loja;
 
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,5 +40,25 @@ public class TabelaProdutos {
             }
         }
         return  produtoProcurado;
+    }
+
+    public Produto cadastrarNovoProduto(Produto novoProduto){
+        int ultimoIndex = this.produtos.size() - 1;
+        Produto ultimoProduto = this.produtos.get(ultimoIndex);
+        int proximoId = ultimoProduto.getId() + 1;
+
+        novoProduto.setId(proximoId);
+        this.produtos.add(novoProduto);
+        return novoProduto;
+    }
+
+
+    public  void atualizarProduto(int produtoId, Produto produtoAtualizar){
+        Produto produtoProcurado = this.buscarProdutoPeloId(produtoId);
+        if (produtoProcurado != null){
+            produtoProcurado.setNome(produtoAtualizar.getNome());
+            produtoProcurado.setDescricao(produtoAtualizar.getDescricao());
+            produtoProcurado.setValorUnitario(produtoAtualizar.getValorUnitario());
+        }
     }
 }
